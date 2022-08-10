@@ -1,0 +1,26 @@
+{% extends 'portfolio/base.html' %}
+
+{% load static %}
+
+{% block body %}
+    <div class="container text-center pt-2">
+        <a href="https://www.linkedin.com/in/matthew-topping-82612a40/" target="_blank" class="avatar-link">
+            <img src="{% static 'portfolio/profile_BW.jpg' %}" id="avatar" alt="profile">
+        </a> 
+    </div>
+    {% for project in projects %}
+
+        <h2>{{project.title}}</h2><br>
+        <p>{{project.description}}</p><br>
+        <img src="{{ project.image.url }}" alt="" height="200" width="200">
+        
+        {% if project.url %}
+            <br><a href="{{ project.url }}">Link</a>
+        {% endif %}
+            
+        
+    {% endfor %}
+        
+    
+{% endblock body %}
+    
