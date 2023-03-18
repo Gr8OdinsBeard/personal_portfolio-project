@@ -4,16 +4,28 @@
 
 {% block body %}
 
-    <h1>Blog</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4 ms-2 mt-1">
+    <div class="col">
+        <h1>Blog</h1>
+        <h2>Mat has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
+    </div>
+</div>
+
+{% for blog in blogs %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4 ms-2">
+    <div class="col">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <p class="card-text">{{ blog.date|date:'M d Y'|upper }}</p>
+                <p>{{ blog.description|striptags|truncatechars:100 }}</p>
+                <br><a href="{% url 'blog:detail' blog.id %}" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+    </div>
+</div>
     
-    <h2>Mat has written {{ blogs.count }} blog{{ blogs.count|pluralize }}</h2>
-    
-    {% for blog in blogs %}
-        <a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
-        <h5>{{ blog.date|date:'M d Y'|upper }}</h5>
-        <p>{{ blog.description|striptags|truncatechars:100 }}</p>
-    {% endfor %}
-        
-        
+{% endfor %}
     
 {% endblock body %}

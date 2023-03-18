@@ -6,21 +6,28 @@
     <div class="container text-center pt-2">
         <a href="https://www.linkedin.com/in/matthew-topping-82612a40/" target="_blank" class="avatar-link">
             <img src="{% static 'portfolio/profile_BW.jpg' %}" id="avatar" alt="profile">
-        </a> 
+        </a>
     </div>
+
+    <hr class="pf-hr">
+
     {% for project in projects %}
 
-        <h2>{{project.title}}</h2><br>
-        <p>{{project.description}}</p><br>
-        <!-- <img src="{{ project.image.url }}" alt="" height="200" width="200"> -->
-        
-        {% if project.url %}
-            <br><a href="{{ project.url }}">Link</a>
-        {% endif %}
-            
+    <div class="row row-cols-1 row-cols-md-3 g-4 ms-2 mt-1">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ project.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                    {% if project.url %}
+                        <br><a href="{{ project.url }}" class="btn btn-primary">More Info</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
         
     {% endfor %}
-        
     
 {% endblock body %}
-    
